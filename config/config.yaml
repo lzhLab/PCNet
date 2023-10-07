@@ -1,0 +1,60 @@
+pretrain_model: '../pretrain_model/res2net50_v1b_26w_4s-3cf99910.pth'
+eval_model:
+  eval_PSGNet_full_max_dice: './checkpoints/2023-02-03_08-34-17/model-51.pth'
+  eval_PSGNet_full_max_dice_per_case: './checkpoints/2023-02-03_08-34-17/model-51.pth'
+  eval_PSGNet_without_ps_max_dice: './checkpoints/2023-02-02_08-21-39/model-100.pth'
+  eval_PSGNet_without_ps_max_dice_per_case: './checkpoints/2023-02-02_08-21-39/model-77.pth'
+  eval_PSGNet_without_ps_without_GA_max_dice: './checkpoints/2023-02-04_00-00-39/model-65.pth'
+  eval_PSGNet_without_ps_without_GA_max_dice_per_case: './checkpoints/2023-02-04_00-00-39/model-55.pth'
+load_model: False
+seed: 7
+cuda_device: 3
+
+data_path: '../Liver_DataSets_New/new_data'
+config_path: './config/config.yaml'
+summary_path: './summary/summary.xlsx'
+ablation_path: './summary/ablation.xlsx'
+record_path: './record'
+log_path: './log'
+image_res_path: './image_res'
+checkpoints_path: './checkpoints'
+
+num_workers:
+  train: 0
+  test: 0
+batch_size:
+  train: 32
+  test: 1
+shuffle:
+  train: True
+  test: False
+train_ratio: 0.8
+test_ratio: 0.2
+
+mean:
+  R: 24.35
+  G: 24.35
+  B: 24.35
+std:
+  R: 50.41
+  G: 50.41
+  B: 50.41
+
+size: 256
+optimizer: 'SGD'
+scheduler: 'StepLR'
+lr: 0.005
+base_head_ratio: 0.1
+max_epoch: 100
+show_step: 30
+
+#ReduceLROnPlateau
+lr_schedure: 0.5
+lr_step: 5
+lr_min: 0.000001
+
+#StepLR
+step_lr: 25
+gamma: 0.6
+weight_decay: 0.0001
+momentum: 0.9
